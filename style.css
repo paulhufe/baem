@@ -238,6 +238,57 @@ footer {
     margin-top: 8px;
 }
 
+/* Photo slideshow (several photos for one year, with arrows) */
+.slide-frame {
+    position: relative;
+    background-color: #f2f2f2;
+}
+
+.slide-frame img {
+    height: 100%;
+    object-fit: contain;
+}
+
+.slideshow [hidden] {
+    display: none !important;
+}
+
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.45);
+    color: white;
+    font-size: 20px;
+    line-height: 44px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.slide-btn:hover,
+.slide-btn:focus-visible {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.slide-prev {
+    left: 12px;
+}
+
+.slide-next {
+    right: 12px;
+}
+
+.slide-count {
+    margin-left: 4px;
+    white-space: nowrap;
+}
+
 /* Embedded video (About page): keeps a 16:9 shape at any screen width */
 .video-embed {
     position: relative;
@@ -261,30 +312,4 @@ footer {
     color: #7e8082;
     margin-top: 0;
     text-align: left;
-}
-
-/* News write-up box (About page) */
-.writeup {
-    border-left: 3px solid #772059;
-    background-color: #f8f8f8;
-    padding: 6px 20px 10px 20px;
-    margin: 30px 0 10px 0;
-}
-
-.writeup p {
-    margin: 8px 0;
-}
-
-.writeup .meta {
-    color: #7e8082;
-    font-size: 0.9em;
-    margin-bottom: 0;
-}
-
-.writeup .headline {
-    font-size: 1.15em;
-    font-weight: 700;
-    color: #222;
-    line-height: 1.5;
-    margin-top: 2px;
 }

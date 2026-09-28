@@ -56,9 +56,22 @@
         <h2>Meetings 2026</h2>
         <p> The 2026 edition of BÆM took place 5-8 May 2026 at the University of
             Bristol. Select a workshop to see details about the call for papers, organisers, and keynote speakers.</p>
-        <figure class="group-photo">
-            <img src="images/group-photo-2026.jpg" alt="Group photo of participants at BÆM 2026" loading="lazy">
-            <figcaption>Participants of BÆM 2026, University of Bristol</figcaption>
+        <!-- Photo slideshow: to add a photo, copy one <img class="slide"> line and change src, alt and data-caption -->
+        <figure class="group-photo slideshow" aria-label="Photos from BÆM 2026">
+            <div class="slide-frame" style="aspect-ratio: 1520 / 1431;">
+                <img class="slide" src="images/group-photo-2026.jpg"
+                    alt="Group photo of participants at the BÆM 2026 development economics workshop"
+                    data-caption="Participants of BÆM 2026 development economics workshop, University of Bristol"
+                    loading="lazy">
+                <img class="slide" src="images/group-photo-2026-session.jpg"
+                    alt="A speaker presenting slides to participants in a lecture room at the BÆM 2026 development economics workshop"
+                    data-caption="Participants of BÆM 2026 development economics workshop during a session"
+                    loading="lazy" hidden>
+                <button type="button" class="slide-btn slide-prev" aria-label="Previous photo" hidden>&#10094;</button>
+                <button type="button" class="slide-btn slide-next" aria-label="Next photo" hidden>&#10095;</button>
+            </div>
+            <figcaption><span class="slide-caption">Participants of BÆM 2026 development economics workshop, University
+                    of Bristol</span> <span class="slide-count" hidden></span></figcaption>
         </figure>
         <p style="margin-bottom: 0px;">
 
@@ -113,9 +126,30 @@
         <h2>Meetings 2025</h2>
         <p> The 2025 edition of BÆM took place 6-9 May 2025 at the University of
             Bristol. Select a workshop to see details about the call for papers, organisers, and keynote speakers.</p>
-        <figure class="group-photo">
-            <img src="images/group-photo-2025.jpg" alt="Group photo of participants at BÆM 2025" loading="lazy">
-            <figcaption>Participants of BÆM 2025, University of Bristol</figcaption>
+        <!-- Photo slideshow: to add a photo, copy one <img class="slide"> line and change src, alt and data-caption -->
+        <figure class="group-photo slideshow" aria-label="Photos from BÆM 2025">
+            <div class="slide-frame" style="aspect-ratio: 1600 / 1204;">
+                <img class="slide" src="images/group-photo-2025.jpg"
+                    alt="Participants of the BÆM 2025 development economics workshop in front of the Clifton Suspension Bridge"
+                    data-caption="Participants of BÆM 2025 development economics workshop at the Clifton Suspension Bridge, Bristol"
+                    loading="lazy">
+                <img class="slide" src="images/group-photo-2025-session.jpg"
+                    alt="Participants of the BÆM 2025 development economics workshop smiling and laughing while listening to a talk"
+                    data-caption="Participants of BÆM 2025 development economics workshop during a session"
+                    loading="lazy" hidden>
+                <img class="slide" src="images/group-photo-2025-coffee.jpg"
+                    alt="Participants of the BÆM 2025 development economics workshop chatting over coffee during a break"
+                    data-caption="Participants of BÆM 2025 development economics workshop during a coffee break"
+                    loading="lazy" hidden>
+                <img class="slide" src="images/group-photo-2025-dinner.jpg"
+                    alt="Participants of the BÆM 2025 development economics workshop talking over dinner at round tables in a restaurant"
+                    data-caption="Participants of BÆM 2025 development economics workshop at the workshop dinner"
+                    loading="lazy" hidden>
+                <button type="button" class="slide-btn slide-prev" aria-label="Previous photo" hidden>&#10094;</button>
+                <button type="button" class="slide-btn slide-next" aria-label="Next photo" hidden>&#10095;</button>
+            </div>
+            <figcaption><span class="slide-caption">Participants of BÆM 2025 development economics workshop at the
+                    Clifton Suspension Bridge, Bristol</span> <span class="slide-count" hidden></span></figcaption>
         </figure>
         <p style="margin-bottom: 0px;">
 
@@ -152,7 +186,7 @@
 
         </p>
         <p><span style="font-size: smaller;">&#10095;</span> <a href="about.html" class="contact-link">Watch the BÆM 2025
-                video and read the write-up</a></p>
+                video</a></p>
 
         <!-- BAEM 2024 -->
         <h2>Meetings 2024</h2>
@@ -223,6 +257,43 @@
             const linksDiv = element.nextElementSibling;
             linksDiv.classList.toggle('active');
         }
+
+        // Photo slideshows: arrows (or swipe / arrow keys) move between photos; never moves on its own
+        document.querySelectorAll('.slideshow').forEach(function (show) {
+            const slides = show.querySelectorAll('.slide');
+            if (slides.length < 2) return;
+            const caption = show.querySelector('.slide-caption');
+            const count = show.querySelector('.slide-count');
+            const prev = show.querySelector('.slide-prev');
+            const next = show.querySelector('.slide-next');
+            let current = 0;
+
+            function showSlide(i) {
+                current = (i + slides.length) % slides.length;
+                slides.forEach(function (slide, k) { slide.hidden = (k !== current); });
+                caption.textContent = slides[current].dataset.caption;
+                count.textContent = '(' + (current + 1) + ' / ' + slides.length + ')';
+            }
+
+            prev.hidden = false;
+            next.hidden = false;
+            count.hidden = false;
+            prev.addEventListener('click', function () { showSlide(current - 1); });
+            next.addEventListener('click', function () { showSlide(current + 1); });
+            show.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowLeft') showSlide(current - 1);
+                if (e.key === 'ArrowRight') showSlide(current + 1);
+            });
+            let startX = null;
+            show.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+            show.addEventListener('touchend', function (e) {
+                if (startX === null) return;
+                const dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dx) > 40) showSlide(current + (dx < 0 ? 1 : -1));
+                startX = null;
+            });
+            showSlide(0);
+        });
     </script>
 
 </body>
