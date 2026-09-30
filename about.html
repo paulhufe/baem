@@ -52,12 +52,53 @@
                 rel="noopener">Watch on YouTube</a>
         </p>
 
+        <!-- Photos: one small slideshow (changes every 5 seconds; code in slideshow.js).
+             To add a photo, copy one <img class="slide"> line and change src, alt and data-caption. -->
+        <h2>BÆM in pictures</h2>
+        <figure class="group-photo slideshow match-video" aria-label="Photos from BÆM" data-autoplay="5000">
+            <div class="slide-frame">
+                <img class="slide" src="images/group-photo-2025-session.jpg"
+                    alt="Participants of the BÆM 2025 development economics workshop smiling and laughing while listening to a talk"
+                    data-caption="Participants of BÆM 2025 development economics workshop during a session"
+                    loading="lazy">
+                <img class="slide" src="images/group-photo-2026.jpg"
+                    alt="Group photo of participants at the BÆM 2026 development economics workshop"
+                    data-caption="Participants of BÆM 2026 development economics workshop, University of Bristol"
+                    loading="lazy" hidden>
+                <img class="slide" src="images/group-photo-2025-dinner.jpg"
+                    alt="Participants of the BÆM 2025 development economics workshop talking over dinner at round tables in a restaurant"
+                    data-caption="Participants of BÆM 2025 development economics workshop at the workshop dinner"
+                    loading="lazy" hidden>
+                <img class="slide" src="images/group-photo-2026-session.jpg"
+                    alt="A speaker presenting slides to participants in a lecture room at the BÆM 2026 development economics workshop"
+                    data-caption="Participants of BÆM 2026 development economics workshop during a session"
+                    loading="lazy" hidden>
+                <img class="slide" src="images/group-photo-2025.jpg"
+                    alt="Participants of the BÆM 2025 development economics workshop in front of the Clifton Suspension Bridge"
+                    data-caption="Participants of BÆM 2025 development economics workshop at the Clifton Suspension Bridge, Bristol"
+                    loading="lazy" hidden>
+                <img class="slide" src="images/group-photo-2025-coffee.jpg"
+                    alt="Participants of the BÆM 2025 development economics workshop chatting over coffee during a break"
+                    data-caption="Participants of BÆM 2025 development economics workshop during a coffee break"
+                    loading="lazy" hidden>
+                <button type="button" class="slide-btn slide-prev" aria-label="Previous photo" hidden>&#10094;</button>
+                <button type="button" class="slide-btn slide-next" aria-label="Next photo" hidden>&#10095;</button>
+            </div>
+            <figcaption>
+                <span class="slide-caption">Participants of BÆM 2025 development economics workshop during a
+                    session</span> <span class="slide-count" hidden></span>
+                <button type="button" class="slide-pause" hidden>Pause</button>
+            </figcaption>
+        </figure>
+
     </section>
 
     <!-- Footer section -->
     <footer>
         &copy; 2025 Bristol Applied Economics Meetings. All rights reserved.
     </footer>
+
+    <script src="slideshow.js"></script>
 
 </body>
 
